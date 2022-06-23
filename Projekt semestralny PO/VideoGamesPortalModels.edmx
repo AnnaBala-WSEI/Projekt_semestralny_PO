@@ -1,0 +1,326 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="VideoGamesPortalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="games">
+          <Key>
+            <PropertyRef Name="game_id" />
+          </Key>
+          <Property Name="game_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="producer_id" Type="int" />
+          <Property Name="game_title" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="release_year" Type="smallint" Nullable="false" />
+          <Property Name="is_a_serie" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'C:\USERS\ANNAB\SOURCE\REPOS\PROJEKT SEMESTRALNY PO\PROJEKT SEMESTRALNY PO\VIDEOGAMESPORTAL.MDF.dbo.games_genres' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="games_genres">
+          <Key>
+            <PropertyRef Name="game_id" />
+            <PropertyRef Name="genre_id" />
+          </Key>
+          <Property Name="game_id" Type="int" Nullable="false" />
+          <Property Name="genre_id" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'C:\USERS\ANNAB\SOURCE\REPOS\PROJEKT SEMESTRALNY PO\PROJEKT SEMESTRALNY PO\VIDEOGAMESPORTAL.MDF.dbo.games_platforms' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="games_platforms">
+          <Key>
+            <PropertyRef Name="game_id" />
+            <PropertyRef Name="platform_id" />
+          </Key>
+          <Property Name="game_id" Type="int" Nullable="false" />
+          <Property Name="platform_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="genres">
+          <Key>
+            <PropertyRef Name="genre_id" />
+          </Key>
+          <Property Name="genre_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="genre_name" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="platforms">
+          <Key>
+            <PropertyRef Name="platform_id" />
+          </Key>
+          <Property Name="platform_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="platform_name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="release_year" Type="smallint" Nullable="false" />
+          <Property Name="platform_type" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="producers">
+          <Key>
+            <PropertyRef Name="producer_id" />
+          </Key>
+          <Property Name="producer_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="producer_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="beginning_of_activity" Type="date" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__games__producer___2B3F6F97">
+          <End Role="producers" Type="Self.producers" Multiplicity="0..1" />
+          <End Role="games" Type="Self.games" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="producers">
+              <PropertyRef Name="producer_id" />
+            </Principal>
+            <Dependent Role="games">
+              <PropertyRef Name="producer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__games_gen__game___3D5E1FD2">
+          <End Role="games" Type="Self.games" Multiplicity="1" />
+          <End Role="games_genres" Type="Self.games_genres" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="games">
+              <PropertyRef Name="game_id" />
+            </Principal>
+            <Dependent Role="games_genres">
+              <PropertyRef Name="game_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__games_gen__genre__3E52440B">
+          <End Role="genres" Type="Self.genres" Multiplicity="1" />
+          <End Role="games_genres" Type="Self.games_genres" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="genres">
+              <PropertyRef Name="genre_id" />
+            </Principal>
+            <Dependent Role="games_genres">
+              <PropertyRef Name="genre_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__games_pla__game___403A8C7D">
+          <End Role="games" Type="Self.games" Multiplicity="1" />
+          <End Role="games_platforms" Type="Self.games_platforms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="games">
+              <PropertyRef Name="game_id" />
+            </Principal>
+            <Dependent Role="games_platforms">
+              <PropertyRef Name="game_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__games_pla__platf__412EB0B6">
+          <End Role="platforms" Type="Self.platforms" Multiplicity="1" />
+          <End Role="games_platforms" Type="Self.games_platforms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="platforms">
+              <PropertyRef Name="platform_id" />
+            </Principal>
+            <Dependent Role="games_platforms">
+              <PropertyRef Name="platform_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="VideoGamesPortalModelStoreContainer">
+          <EntitySet Name="games" EntityType="Self.games" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="genres" EntityType="Self.genres" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="platforms" EntityType="Self.platforms" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="producers" EntityType="Self.producers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="games_genres" EntityType="Self.games_genres" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [games_genres].[game_id] AS [game_id], 
+    [games_genres].[genre_id] AS [genre_id]
+    FROM [dbo].[games_genres] AS [games_genres]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="games_platforms" EntityType="Self.games_platforms" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [games_platforms].[game_id] AS [game_id], 
+    [games_platforms].[platform_id] AS [platform_id]
+    FROM [dbo].[games_platforms] AS [games_platforms]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__games__producer___2B3F6F97" Association="Self.FK__games__producer___2B3F6F97">
+            <End Role="producers" EntitySet="producers" />
+            <End Role="games" EntitySet="games" />
+          </AssociationSet>
+          <AssociationSet Name="FK__games_gen__game___3D5E1FD2" Association="Self.FK__games_gen__game___3D5E1FD2">
+            <End Role="games" EntitySet="games" />
+            <End Role="games_genres" EntitySet="games_genres" />
+          </AssociationSet>
+          <AssociationSet Name="FK__games_gen__genre__3E52440B" Association="Self.FK__games_gen__genre__3E52440B">
+            <End Role="genres" EntitySet="genres" />
+            <End Role="games_genres" EntitySet="games_genres" />
+          </AssociationSet>
+          <AssociationSet Name="FK__games_pla__game___403A8C7D" Association="Self.FK__games_pla__game___403A8C7D">
+            <End Role="games" EntitySet="games" />
+            <End Role="games_platforms" EntitySet="games_platforms" />
+          </AssociationSet>
+          <AssociationSet Name="FK__games_pla__platf__412EB0B6" Association="Self.FK__games_pla__platf__412EB0B6">
+            <End Role="platforms" EntitySet="platforms" />
+            <End Role="games_platforms" EntitySet="games_platforms" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="VideoGamesPortalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="game">
+          <Key>
+            <PropertyRef Name="game_id" />
+          </Key>
+          <Property Name="game_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="producer_id" Type="Int32" />
+          <Property Name="game_title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="release_year" Type="Int16" Nullable="false" />
+          <Property Name="is_a_serie" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="producer" Relationship="Self.FK__games__producer___2B3F6F97" FromRole="games" ToRole="producers" />
+          <NavigationProperty Name="genres" Relationship="Self.games_genres" FromRole="games" ToRole="genres" />
+          <NavigationProperty Name="platforms" Relationship="Self.games_platforms" FromRole="games" ToRole="platforms" />
+        </EntityType>
+        <EntityType Name="genre">
+          <Key>
+            <PropertyRef Name="genre_id" />
+          </Key>
+          <Property Name="genre_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="genre_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="games" Relationship="Self.games_genres" FromRole="genres" ToRole="games" />
+        </EntityType>
+        <EntityType Name="platform">
+          <Key>
+            <PropertyRef Name="platform_id" />
+          </Key>
+          <Property Name="platform_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="platform_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="release_year" Type="Int16" Nullable="false" />
+          <Property Name="platform_type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="games" Relationship="Self.games_platforms" FromRole="platforms" ToRole="games" />
+        </EntityType>
+        <EntityType Name="producer">
+          <Key>
+            <PropertyRef Name="producer_id" />
+          </Key>
+          <Property Name="producer_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="producer_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="beginning_of_activity" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="games" Relationship="Self.FK__games__producer___2B3F6F97" FromRole="producers" ToRole="games" />
+        </EntityType>
+        <Association Name="FK__games__producer___2B3F6F97">
+          <End Role="producers" Type="Self.producer" Multiplicity="0..1" />
+          <End Role="games" Type="Self.game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="producers">
+              <PropertyRef Name="producer_id" />
+            </Principal>
+            <Dependent Role="games">
+              <PropertyRef Name="producer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="games_genres">
+          <End Role="games" Type="Self.game" Multiplicity="*" />
+          <End Role="genres" Type="Self.genre" Multiplicity="*" />
+        </Association>
+        <Association Name="games_platforms">
+          <End Role="games" Type="Self.game" Multiplicity="*" />
+          <End Role="platforms" Type="Self.platform" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="VideoGamesPortalEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="games" EntityType="Self.game" />
+          <EntitySet Name="genres" EntityType="Self.genre" />
+          <EntitySet Name="platforms" EntityType="Self.platform" />
+          <EntitySet Name="producers" EntityType="Self.producer" />
+          <AssociationSet Name="FK__games__producer___2B3F6F97" Association="Self.FK__games__producer___2B3F6F97">
+            <End Role="producers" EntitySet="producers" />
+            <End Role="games" EntitySet="games" />
+          </AssociationSet>
+          <AssociationSet Name="games_genres" Association="Self.games_genres">
+            <End Role="games" EntitySet="games" />
+            <End Role="genres" EntitySet="genres" />
+          </AssociationSet>
+          <AssociationSet Name="games_platforms" Association="Self.games_platforms">
+            <End Role="games" EntitySet="games" />
+            <End Role="platforms" EntitySet="platforms" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="VideoGamesPortalModelStoreContainer" CdmEntityContainer="VideoGamesPortalEntities">
+          <EntitySetMapping Name="games">
+            <EntityTypeMapping TypeName="VideoGamesPortalModel.game">
+              <MappingFragment StoreEntitySet="games">
+                <ScalarProperty Name="game_id" ColumnName="game_id" />
+                <ScalarProperty Name="producer_id" ColumnName="producer_id" />
+                <ScalarProperty Name="game_title" ColumnName="game_title" />
+                <ScalarProperty Name="release_year" ColumnName="release_year" />
+                <ScalarProperty Name="is_a_serie" ColumnName="is_a_serie" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="genres">
+            <EntityTypeMapping TypeName="VideoGamesPortalModel.genre">
+              <MappingFragment StoreEntitySet="genres">
+                <ScalarProperty Name="genre_id" ColumnName="genre_id" />
+                <ScalarProperty Name="genre_name" ColumnName="genre_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="platforms">
+            <EntityTypeMapping TypeName="VideoGamesPortalModel.platform">
+              <MappingFragment StoreEntitySet="platforms">
+                <ScalarProperty Name="platform_id" ColumnName="platform_id" />
+                <ScalarProperty Name="platform_name" ColumnName="platform_name" />
+                <ScalarProperty Name="release_year" ColumnName="release_year" />
+                <ScalarProperty Name="platform_type" ColumnName="platform_type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="producers">
+            <EntityTypeMapping TypeName="VideoGamesPortalModel.producer">
+              <MappingFragment StoreEntitySet="producers">
+                <ScalarProperty Name="producer_id" ColumnName="producer_id" />
+                <ScalarProperty Name="producer_name" ColumnName="producer_name" />
+                <ScalarProperty Name="beginning_of_activity" ColumnName="beginning_of_activity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="games_genres" TypeName="VideoGamesPortalModel.games_genres" StoreEntitySet="games_genres">
+            <EndProperty Name="games">
+              <ScalarProperty Name="game_id" ColumnName="game_id" />
+            </EndProperty>
+            <EndProperty Name="genres">
+              <ScalarProperty Name="genre_id" ColumnName="genre_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="games_platforms" TypeName="VideoGamesPortalModel.games_platforms" StoreEntitySet="games_platforms">
+            <EndProperty Name="games">
+              <ScalarProperty Name="game_id" ColumnName="game_id" />
+            </EndProperty>
+            <EndProperty Name="platforms">
+              <ScalarProperty Name="platform_id" ColumnName="platform_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

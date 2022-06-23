@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="dd3b46766dae482a93098a7f4260dea9" Name="Diagram1">
+        <EntityTypeShape EntityType="VideoGamesPortalModel.game" Width="1.5" PointX="3" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VideoGamesPortalModel.genre" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="VideoGamesPortalModel.platform" Width="1.5" PointX="5.25" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="VideoGamesPortalModel.producer" Width="1.5" PointX="0.75" PointY="2.25" IsExpanded="true" />
+        <AssociationConnector Association="VideoGamesPortalModel.FK__games__producer___2B3F6F97" ManuallyRouted="false" />
+        <AssociationConnector Association="VideoGamesPortalModel.games_genres" ManuallyRouted="false" />
+        <AssociationConnector Association="VideoGamesPortalModel.games_platforms" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
