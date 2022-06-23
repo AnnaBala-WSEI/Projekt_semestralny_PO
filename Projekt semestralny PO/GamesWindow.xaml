@@ -12,7 +12,32 @@
             <ColumnDefinition Width="79*"/>
         </Grid.ColumnDefinitions>
         <TextBlock TextAlignment="Center" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Video games list" VerticalAlignment="Top" Height="28" Width="772" Grid.ColumnSpan="2"/>
-        <DataGrid x:Name="gridVideoGames" HorizontalAlignment="Left" Height="190" Margin="10,43,0,0" VerticalAlignment="Top" Width="772" RenderTransformOrigin="-3.66,-0.94" Grid.ColumnSpan="2"/>
+        <DataGrid x:Name="gridVideoGames" HorizontalAlignment="Left" Height="366" Margin="10,43,0,0" VerticalAlignment="Top" Width="400" RenderTransformOrigin="-3.66,-0.94" Grid.ColumnSpan="2" SelectionChanged="gridVideoGames_SelectionChanged"/>
+        <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1" HorizontalAlignment="Left" Height="366" Margin="255,43,0,0" VerticalAlignment="Top" Width="367">
+            <CheckBox  x:Name="gameIsASerie" Content="Please check if yes" Margin="156,112,79,235" RenderTransformOrigin="0.5,0.5">
+                <CheckBox.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="0.291"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </CheckBox.RenderTransform>
+            </CheckBox>
+        </Border>
+        <Label Content="Game title:" Grid.Column="1" HorizontalAlignment="Left" Margin="270,88,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.711,0.154" Width="98"/>
+        <TextBox x:Name="gameTitle" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="411,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170"/>
+        <Label Content="Release year:" Grid.Column="1" HorizontalAlignment="Left" Margin="270,119,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.711,0.154" Width="98"/>
+        <TextBox x:Name="gameReleaseYear" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="411,122,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170"/>
+        <Label Content="Is it a serie?:" Grid.Column="1" HorizontalAlignment="Left" Margin="270,150,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.711,0.154" Width="98"/>
+        <TextBox Grid.Column="1" TextAlignment="Center" HorizontalAlignment="Left" Height="23" Margin="255,43,0,0" TextWrapping="Wrap" Text="Add new game" VerticalAlignment="Top" Width="367"/>
+        <Button x:Name="btnAdd" Click="btnAdd_Click" Content="Add" Grid.Column="1" HorizontalAlignment="Left" Margin="481,192,0,0" VerticalAlignment="Top" Width="100" Height="29"/>
+        <TextBlock TextAlignment="Center" HorizontalAlignment="Left" Margin="255,236,0,0" TextWrapping="Wrap" Text="Update game information" VerticalAlignment="Top" Height="28" Width="367" Grid.Column="1"/>
+        <TextBlock TextAlignment="Center" HorizontalAlignment="Left" Margin="255,255,0,0" TextWrapping="Wrap" Text="Please select which game you want to update" VerticalAlignment="Top" Height="24" Width="367" Grid.Column="1"/>
+        <Button x:Name="btnUpdate" Click="btnUpdate_Click" Content="Update" Grid.Column="1" HorizontalAlignment="Left" Margin="391,284,0,0" VerticalAlignment="Top" Width="100" Height="29"/>
+        <TextBlock TextAlignment="Center" HorizontalAlignment="Left" Margin="255,323,0,0" TextWrapping="Wrap" Text="Delete game" VerticalAlignment="Top" Height="28" Width="367" Grid.Column="1"/>
+        <TextBlock TextAlignment="Center" HorizontalAlignment="Left" Margin="255,342,0,0" TextWrapping="Wrap" Text="Please select which game you want to delete" VerticalAlignment="Top" Height="24" Width="367" Grid.Column="1"/>
+        <Button x:Name="btnDelete" Click="btnDelete_Click" Content="Delete" Grid.Column="1" HorizontalAlignment="Left" Margin="391,371,0,0" VerticalAlignment="Top" Width="100" Height="29"/>
 
     </Grid>
 </Window>

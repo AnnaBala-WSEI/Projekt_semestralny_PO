@@ -101,6 +101,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>VideoGamesPortalModels.Context.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="VideoGamesPortalModels.cs">
       <AutoGen>True</AutoGen>
@@ -165,12 +166,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="VideoGamesPortal.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="VideoGamesPortalModels.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>VideoGamesPortalModels.edmx</DependentUpon>
       <LastGenOutput>VideoGamesPortalModels.Context.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="VideoGamesPortalModels.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -178,7 +180,7 @@
       <LastGenOutput>VideoGamesPortalModels.cs</LastGenOutput>
     </Content>
     <Content Include="VideoGamesPortal_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>VideoGamesPortal.mdf</DependentUpon>
     </Content>
   </ItemGroup>
