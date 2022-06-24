@@ -19,12 +19,11 @@ namespace Projekt_semestralny_PO
     /// </summary>
     public partial class GamesWindow : Window
     {
+        VideoGamesPortalEntities db = new VideoGamesPortalEntities();
 
         public GamesWindow()
         {
             InitializeComponent();
-
-            VideoGamesPortalEntities db = new VideoGamesPortalEntities();
 
             var games = from game in db.games
                         select new
@@ -47,8 +46,6 @@ namespace Projekt_semestralny_PO
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            VideoGamesPortalEntities db = new VideoGamesPortalEntities();
-
             game newGame = new game() { game_title = gameTitle.Text, release_year = short.Parse(gameReleaseYear.Text), is_a_serie = (bool)gameIsASerie.IsChecked };
 
             db.games.Add(newGame);
@@ -84,8 +81,6 @@ namespace Projekt_semestralny_PO
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
-            VideoGamesPortalEntities db = new VideoGamesPortalEntities();
-
             game gameToUpdate = (from game in db.games where game.game_id == this.gameIdToUpdate select game).SingleOrDefault();
 
             if (gameToUpdate != null)
@@ -120,9 +115,6 @@ namespace Projekt_semestralny_PO
 
             if (answer == MessageBoxResult.Yes)
             {
-
-                VideoGamesPortalEntities db = new VideoGamesPortalEntities();
-
                 game gameToDelete = (from game in db.games where game.game_id == this.gameIdToUpdate select game).SingleOrDefault();
 
                 if (gameToDelete != null)
