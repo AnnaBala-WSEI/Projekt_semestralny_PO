@@ -59,7 +59,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
+    <Reference Include="System">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
@@ -91,6 +93,9 @@
     <Compile Include="genre.cs">
       <DependentUpon>VideoGamesPortalModels.tt</DependentUpon>
     </Compile>
+    <Compile Include="GenresWindow.xaml.cs">
+      <DependentUpon>GenresWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="platform.cs">
       <DependentUpon>VideoGamesPortalModels.tt</DependentUpon>
     </Compile>
@@ -114,6 +119,10 @@
       <DependentUpon>VideoGamesPortalModels.edmx</DependentUpon>
     </Compile>
     <Page Include="GamesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GenresWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
