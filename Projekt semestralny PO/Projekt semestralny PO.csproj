@@ -102,6 +102,9 @@
     <Compile Include="producer.cs">
       <DependentUpon>VideoGamesPortalModels.tt</DependentUpon>
     </Compile>
+    <Compile Include="ProducersWindow.xaml.cs">
+      <DependentUpon>ProducersWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VideoGamesPortalModels.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -138,6 +141,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ProducersWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
