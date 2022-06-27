@@ -90,17 +90,11 @@
     <Compile Include="GamesPage.xaml.cs">
       <DependentUpon>GamesPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GamesWindow.xaml.cs">
-      <DependentUpon>GamesWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="genre.cs">
       <DependentUpon>VideoGamesPortalModels.tt</DependentUpon>
     </Compile>
     <Compile Include="GenresPage.xaml.cs">
       <DependentUpon>GenresPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="GenresWindow.xaml.cs">
-      <DependentUpon>GenresWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="NavigationPage.xaml.cs">
       <DependentUpon>NavigationPage.xaml</DependentUpon>
@@ -111,17 +105,11 @@
     <Compile Include="PlatformsPage.xaml.cs">
       <DependentUpon>PlatformsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PlatformsWindow.xaml.cs">
-      <DependentUpon>PlatformsWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="producer.cs">
       <DependentUpon>VideoGamesPortalModels.tt</DependentUpon>
     </Compile>
     <Compile Include="ProducersPage.xaml.cs">
       <DependentUpon>ProducersPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ProducersWindow.xaml.cs">
-      <DependentUpon>ProducersWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="VideoGamesPortalModels.Context.cs">
       <AutoGen>True</AutoGen>
@@ -143,15 +131,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GamesWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="GenresPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="GenresWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -175,15 +155,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PlatformsWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="ProducersPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ProducersWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
