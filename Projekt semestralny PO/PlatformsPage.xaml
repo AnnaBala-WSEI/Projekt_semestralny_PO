@@ -30,5 +30,6 @@
         <TextBlock TextAlignment="Center" HorizontalAlignment="Left" Margin="365,342,0,0" TextWrapping="Wrap" Text="Please select which platform you want to delete" VerticalAlignment="Top" Height="24" Width="417"/>
         <Button x:Name="btnDelete" Background="#FFF" Click="btnDelete_Click" Content="Delete" HorizontalAlignment="Left" Margin="521,366,0,0" VerticalAlignment="Top" Width="100" Height="29"/>
         <Button x:Name="btnMenu" Background="#FFF" Click="btnMenu_Click" Content="Go back to main page" HorizontalAlignment="Left" Margin="115,370,0,0" VerticalAlignment="Top" Width="136" Height="29"/>
+        <TextBlock x:Name="errorMessage" HorizontalAlignment="Left" Foreground="#ad1f1f" Margin="521,176,0,0" TextWrapping="Wrap" Text="Release year cannot be after current year" VerticalAlignment="Top" Width="234" Visibility="Hidden"/>
     </Grid>
 </Page>

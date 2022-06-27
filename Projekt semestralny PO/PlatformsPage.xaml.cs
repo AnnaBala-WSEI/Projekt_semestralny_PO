@@ -45,24 +45,37 @@ namespace Projekt_semestralny_PO
             this.platformReleaseYear.Text = "";
             platformType.SelectedItem = platformType.Items[0];
         }
+        private bool validateYear(short year)
+        {
+            int currentYear = DateTime.Now.Year;
+            return year <= currentYear;
+        }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            platform newPlatform = new platform() { platform_name = platformName.Text, release_year = short.Parse(platformReleaseYear.Text), platform_type = platformType.Text };
+            short platformReleaseYearConverted = short.Parse(platformReleaseYear.Text);
 
-            db.platforms.Add(newPlatform);
-            db.SaveChanges();
+            if (validateYear(platformReleaseYearConverted))
+            {
+                errorMessage.Visibility = Visibility.Hidden;
+                
+                platform newPlatform = new platform() { platform_name = platformName.Text, release_year = platformReleaseYearConverted, platform_type = platformType.Text };
 
-            var platforms = from platform in db.platforms
-                            select new
-                            {
-                                ID = platform.platform_id,
-                                Name = platform.platform_name,
-                                ReleaseYear = platform.release_year,
-                                Type = platform.platform_type,
-                            };
+                db.platforms.Add(newPlatform);
+                db.SaveChanges();
 
-            this.gridPlatforms.ItemsSource = platforms.ToList();
+                var platforms = from platform in db.platforms
+                                select new
+                                {
+                                    ID = platform.platform_id,
+                                    Name = platform.platform_name,
+                                    ReleaseYear = platform.release_year,
+                                    Type = platform.platform_type,
+                                };
+
+                this.gridPlatforms.ItemsSource = platforms.ToList();
+            }
+            else errorMessage.Visibility = Visibility.Visible;
         }
 
         private int platformIdToUpdate = 0;
@@ -82,28 +95,35 @@ namespace Projekt_semestralny_PO
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
-            platform platformToUpdate = (from platform in db.platforms where platform.platform_id == this.platformIdToUpdate select platform).SingleOrDefault();
+            short platformReleaseYearConverted = short.Parse(platformReleaseYear.Text);
 
-            if (platformToUpdate != null)
+            if (validateYear(platformReleaseYearConverted))
             {
-                platformToUpdate.platform_name = this.platformName.Text;
-                platformToUpdate.release_year = short.Parse(this.platformReleaseYear.Text);
-                platformToUpdate.platform_type = this.platformType.Text;
+                errorMessage.Visibility = Visibility.Hidden;
+                platform platformToUpdate = (from platform in db.platforms where platform.platform_id == this.platformIdToUpdate select platform).SingleOrDefault();
 
-                clear_Form();
-                db.SaveChanges();
+                if (platformToUpdate != null)
+                {
+                    platformToUpdate.platform_name = this.platformName.Text;
+                    platformToUpdate.release_year = platformReleaseYearConverted;
+                    platformToUpdate.platform_type = this.platformType.Text;
+
+                    clear_Form();
+                    db.SaveChanges();
+                }
+
+                var platforms = from platform in db.platforms
+                                select new
+                                {
+                                    ID = platform.platform_id,
+                                    Name = platform.platform_name,
+                                    ReleaseYear = platform.release_year,
+                                    Type = platform.platform_type,
+                                };
+
+                this.gridPlatforms.ItemsSource = platforms.ToList();
             }
-
-            var platforms = from platform in db.platforms
-                            select new
-                            {
-                                ID = platform.platform_id,
-                                Name = platform.platform_name,
-                                ReleaseYear = platform.release_year,
-                                Type = platform.platform_type,
-                            };
-
-            this.gridPlatforms.ItemsSource = platforms.ToList();
+            else errorMessage.Visibility = Visibility.Visible;
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
