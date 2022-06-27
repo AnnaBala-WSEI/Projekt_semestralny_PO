@@ -46,23 +46,38 @@ namespace Projekt_semestralny_PO
             this.gameIsASerie.IsChecked = false;
         }
 
+        private bool validateYear(short year)
+        {
+            int currentYear = DateTime.Now.Year;
+            return year <= currentYear;
+        }
+
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            game newGame = new game() { game_title = gameTitle.Text, release_year = short.Parse(gameReleaseYear.Text), is_a_serie = (bool)gameIsASerie.IsChecked };
+            short gameReleaseYearConverted = short.Parse(gameReleaseYear.Text);
 
-            db.games.Add(newGame);
-            db.SaveChanges();
+            if (validateYear(gameReleaseYearConverted))
+            {
+                errorMessage.Visibility = Visibility.Hidden;
 
-            var games = from game in db.games
-                        select new
-                        {
-                            ID = game.game_id,
-                            Title = game.game_title,
-                            ReleaseYear = game.release_year,
-                            IsASerie = game.is_a_serie,
-                        };
+                game newGame = new game() { game_title = gameTitle.Text, release_year = gameReleaseYearConverted, is_a_serie = (bool)gameIsASerie.IsChecked };
 
-            this.gridVideoGames.ItemsSource = games.ToList();
+                db.games.Add(newGame);
+                db.SaveChanges();
+
+                var games = from game in db.games
+                            select new
+                            {
+                                ID = game.game_id,
+                                Title = game.game_title,
+                                ReleaseYear = game.release_year,
+                                IsASerie = game.is_a_serie,
+                            };
+
+                this.gridVideoGames.ItemsSource = games.ToList();
+            }
+            else errorMessage.Visibility = Visibility.Visible;
+
         }
 
         private int gameIdToUpdate = 0;
@@ -83,29 +98,36 @@ namespace Projekt_semestralny_PO
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
-            game gameToUpdate = (from game in db.games where game.game_id == this.gameIdToUpdate select game).SingleOrDefault();
+            short gameReleaseYearConverted = short.Parse(gameReleaseYear.Text);
 
-            if (gameToUpdate != null)
+            if (validateYear(gameReleaseYearConverted))
             {
-                gameToUpdate.game_title = this.gameTitle.Text;
-                gameToUpdate.release_year = short.Parse(this.gameReleaseYear.Text);
-                gameToUpdate.is_a_serie = (bool)this.gameIsASerie.IsChecked;
+                errorMessage.Visibility = Visibility.Hidden;
 
-                clear_Form();
-                db.SaveChanges();
-            }
+                game gameToUpdate = (from game in db.games where game.game_id == this.gameIdToUpdate select game).SingleOrDefault();
+
+                if (gameToUpdate != null)
+                {
+                    gameToUpdate.game_title = this.gameTitle.Text;
+                    gameToUpdate.release_year = gameReleaseYearConverted;
+                    gameToUpdate.is_a_serie = (bool)this.gameIsASerie.IsChecked;
+
+                    clear_Form();
+                    db.SaveChanges();
+                }
 
 
-            var games = from game in db.games
-                        select new
-                        {
-                            ID = game.game_id,
-                            Title = game.game_title,
-                            ReleaseYear = game.release_year,
-                            IsASerie = game.is_a_serie,
-                        };
+                var games = from game in db.games
+                            select new
+                            {
+                                ID = game.game_id,
+                                Title = game.game_title,
+                                ReleaseYear = game.release_year,
+                                IsASerie = game.is_a_serie,
+                            };
 
-            this.gridVideoGames.ItemsSource = games.ToList();
+                this.gridVideoGames.ItemsSource = games.ToList();
+            } else errorMessage.Visibility = Visibility.Visible;
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
