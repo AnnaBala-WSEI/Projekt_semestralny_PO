@@ -23,6 +23,14 @@ namespace Projekt_semestralny_PO
         public MainWindow()
         {
             InitializeComponent();
+
+            Loaded += MainWindow_Loaded;
         }
+
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            mainFrame.NavigationService.Navigate(new NavigationPage());
+        }
+
     }
 }

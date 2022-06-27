@@ -5,8 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekt_semestralny_PO"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="Video games portal - manage data base" Height="500" Width="850">
+    <Grid Height="500" VerticalAlignment="Bottom" Background="#778DA9">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="147*"/>
+            <ColumnDefinition Width="274*"/>
+        </Grid.ColumnDefinitions>
+        <Frame x:Name="mainFrame" HorizontalAlignment="Center" Height="420" Margin="10,75,10,5" VerticalAlignment="Center" Width="822" NavigationUIVisibility="Hidden" Grid.ColumnSpan="2"/>
+        <TextBlock TextAlignment="Center" Foreground="#FFF" FontWeight="DemiBold" HorizontalAlignment="Left" Margin="10,43,0,0" FontSize="20px" TextWrapping="Wrap" Text="Video games portal DB - manage data" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="822"/>
     </Grid>
 </Window>
