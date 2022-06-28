@@ -22,7 +22,6 @@ namespace Projekt_semestralny_PO
     {
 
         VideoGamesPortalEntities db = new VideoGamesPortalEntities();
-
         public PlatformsPage()
         {
             InitializeComponent();
@@ -39,18 +38,30 @@ namespace Projekt_semestralny_PO
             this.gridPlatforms.ItemsSource = platforms.ToList();
         }
 
+        /// <summary>
+        /// Void function clear_Form resets all form fields
+        /// </summary>
         private void clear_Form()
         {
             this.platformName.Text = "";
             this.platformReleaseYear.Text = "";
             platformType.SelectedItem = platformType.Items[0];
         }
+
+        /// <summary>
+        /// Funtion validateYear is used to validate platformReleaseYear form field
+        /// </summary>
+        /// <returns>True when year is smaller or the same as current year, 
+        /// False when year is bigger than current year</returns>
         private bool validateYear(short year)
         {
             int currentYear = DateTime.Now.Year;
             return year <= currentYear;
         }
 
+        /// <summary>
+        /// btnAdd_Click is a handler function for 'Add' button used for creating new record in database
+        /// </summary>
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             short platformReleaseYearConverted = short.Parse(platformReleaseYear.Text);
@@ -79,6 +90,10 @@ namespace Projekt_semestralny_PO
         }
 
         private int platformIdToUpdate = 0;
+
+        /// <summary>
+        /// gridPlatforms_SelectionChanged is a handler function for selecting a row in datagrid list
+        /// </summary>
         private void gridPlatforms_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (this.gridPlatforms.SelectedItems.Count == 1)
@@ -93,6 +108,9 @@ namespace Projekt_semestralny_PO
             }
         }
 
+        /// <summary>
+        /// btnUpdate_Click is a handler function for 'Update' button used for updating a record in database
+        /// </summary>
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
             short platformReleaseYearConverted = short.Parse(platformReleaseYear.Text);
@@ -126,6 +144,9 @@ namespace Projekt_semestralny_PO
             else errorMessage.Visibility = Visibility.Visible;
         }
 
+        /// <summary>
+        /// btnDelete_Click is a handler function for 'Delete' button used for deleting a record in database
+        /// </summary>
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             var selectedPlatform = this.gridPlatforms.SelectedItems[0];
@@ -158,6 +179,9 @@ namespace Projekt_semestralny_PO
 
         }
 
+        /// <summary>
+        /// btnMenu_Click is a handler function for 'Go back to main page' button used for navigating to MainWindow
+        /// </summary>
         private void btnMenu_Click(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new NavigationPage());

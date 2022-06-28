@@ -37,18 +37,29 @@ namespace Projekt_semestralny_PO
             this.gridProducers.ItemsSource = producers.ToList();
         }
 
+        /// <summary>
+        /// Void function clear_Form resets all form fields
+        /// </summary>
         private void clear_Form()
         {
             this.producerName.Text = "";
             this.beginningOfActivity.SelectedDate = DateTime.Today;
         }
 
+        /// <summary>
+        /// Funtion validateDate is used to validate beginningOfActivity form field
+        /// </summary>
+        /// <returns>True when date is smaller or the same as current date, 
+        /// False when date is bigger than current date</returns>
         private bool validateDate(DateTime date)
         {
             DateTime currentDate = DateTime.Now;
             return date <= currentDate;
         }
 
+        /// <summary>
+        /// btnAdd_Click is a handler function for 'Add' button used for creating new record in database
+        /// </summary>
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             DateTime beginningOfActivityDate = (DateTime)this.beginningOfActivity.SelectedDate;
@@ -76,6 +87,10 @@ namespace Projekt_semestralny_PO
         }
 
         private int producerIdToUpdate = 0;
+
+        /// <summary>
+        /// gridProducers_SelectionChanged is a handler function for selecting a row in datagrid list
+        /// </summary>
         private void gridProducers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (this.gridProducers.SelectedItems.Count == 1)
@@ -89,7 +104,9 @@ namespace Projekt_semestralny_PO
             }
         }
 
-
+        /// <summary>
+        /// btnUpdate_Click is a handler function for 'Update' button used for updating a record in database
+        /// </summary>
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
             DateTime beginningOfActivityDate = (DateTime)this.beginningOfActivity.SelectedDate;
@@ -122,6 +139,9 @@ namespace Projekt_semestralny_PO
             else errorMessage.Visibility = Visibility.Visible;
         }
 
+        /// <summary>
+        /// btnDelete_Click is a handler function for 'Delete' button used for deleting a record in database
+        /// </summary>
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             var selectedProducer = this.gridProducers.SelectedItems[0];
@@ -154,6 +174,10 @@ namespace Projekt_semestralny_PO
 
         }
 
+        /// <summary>
+        /// gridProducers_AutoGeneratingColumn funtion changes formating in 
+        /// datagrid BeginningOfActivity column so that date displays in "dd-MM-yyyy" format
+        /// </summary>
         private void gridProducers_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
             if (e.PropertyName == "BeginningOfActivity")
@@ -164,6 +188,9 @@ namespace Projekt_semestralny_PO
             }
         }
 
+        /// <summary>
+        /// btnMenu_Click is a handler function for 'Go back to main page' button used for navigating to MainWindow
+        /// </summary>
         private void btnMenu_Click(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new NavigationPage());

@@ -27,6 +27,9 @@ namespace Projekt_semestralny_PO
             Loaded += MainWindow_Loaded;
         }
 
+        /// <summary>
+        /// MainWindow_Loaded funtion runs when window finished loading and navigates to NavigationPage
+        /// </summary>
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             mainFrame.NavigationService.Navigate(new NavigationPage());

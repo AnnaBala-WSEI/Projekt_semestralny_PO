@@ -37,11 +37,17 @@ namespace Projekt_semestralny_PO
             this.gridGenres.ItemsSource = genres.ToList();
         }
 
+        /// <summary>
+        /// Void function clear_Form resets all form fields
+        /// </summary>
         private void clear_Form()
         {
             this.genreName.Text = "";
         }
 
+        /// <summary>
+        /// btnAdd_Click is a handler function for 'Add' button used for creating new record in database
+        /// </summary>
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             genre newGenre = new genre() { genre_name = genreName.Text };
@@ -60,6 +66,10 @@ namespace Projekt_semestralny_PO
         }
 
         private int genreIdToUpdate = 0;
+
+        /// <summary>
+        /// gridGenres_SelectionChanged is a handler function for selecting a row in datagrid list
+        /// </summary>
         private void gridGenres_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (this.gridGenres.SelectedItems.Count == 1)
@@ -71,6 +81,9 @@ namespace Projekt_semestralny_PO
             }
         }
 
+        /// <summary>
+        /// btnUpdate_Click is a handler function for 'Update' button used for updating a record in database
+        /// </summary>
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
             genre genreToUpdate = (from genre in db.genres where genre.genre_id == this.genreIdToUpdate select genre).SingleOrDefault();
@@ -93,6 +106,9 @@ namespace Projekt_semestralny_PO
             this.gridGenres.ItemsSource = genres.ToList();
         }
 
+        /// <summary>
+        /// btnDelete_Click is a handler function for 'Delete' button used for deleting a record in database
+        /// </summary>
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             var selectedGenre = this.gridGenres.SelectedItems[0];
@@ -123,6 +139,9 @@ namespace Projekt_semestralny_PO
 
         }
 
+        /// <summary>
+        /// btnMenu_Click is a handler function for 'Go back to main page' button used for navigating to MainWindow
+        /// </summary>
         private void btnMenu_Click(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new NavigationPage());
