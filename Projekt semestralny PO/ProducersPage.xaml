@@ -16,7 +16,7 @@
         <TextBox x:Name="producerName" HorizontalAlignment="Left" Height="23" Margin="521,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170"/>
         <Label Content="Beginning of activity:" HorizontalAlignment="Left" Margin="380,119,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.711,0.154" Width="136"/>
         <TextBox TextAlignment="Center" HorizontalAlignment="Left" Height="23" Margin="365,43,0,0" TextWrapping="Wrap" Text="Add new producer" VerticalAlignment="Top" Width="417"/>
-        <Button x:Name="btnAdd" Background="#FFF" Click="btnAdd_Click" Content="Add" HorizontalAlignment="Left" Margin="591,160,0,0" VerticalAlignment="Top" Width="100" Height="29" RenderTransformOrigin="0.52,-0.897"/>
+        <Button x:Name="btnAdd" Background="#FFF" Click="btnAdd_Click" Content="Add" HorizontalAlignment="Left" Margin="591,171,0,0" VerticalAlignment="Top" Width="100" Height="29" RenderTransformOrigin="0.52,-0.897"/>
         <TextBlock TextAlignment="Center" HorizontalAlignment="Left" Margin="365,208,0,0" TextWrapping="Wrap" Text="Update producer information" VerticalAlignment="Top" Height="28" Width="417"/>
         <TextBlock TextAlignment="Center" HorizontalAlignment="Left" Margin="365,227,0,0" TextWrapping="Wrap" Text="Please select which producer you want to update" VerticalAlignment="Top" Height="24" Width="417"/>
         <Button x:Name="btnUpdate" Background="#FFF"  Click="btnUpdate_Click" Content="Update" HorizontalAlignment="Left" Margin="521,256,0,0" VerticalAlignment="Top" Width="100" Height="29"/>
@@ -25,5 +25,6 @@
         <Button x:Name="btnDelete" Background="#FFF" Click="btnDelete_Click" Content="Delete" HorizontalAlignment="Left" Margin="521,338,0,0" VerticalAlignment="Top" Width="100" Height="29"/>
         <DatePicker x:Name="beginningOfActivity" HorizontalAlignment="Left" Margin="587,120,0,0" VerticalAlignment="Top"/>
         <Button x:Name="btnMenu" Background="#FFF" Click="btnMenu_Click" Content="Go back to main page" HorizontalAlignment="Left" Margin="115,370,0,0" VerticalAlignment="Top" Width="136" Height="29"/>
+        <TextBlock x:Name="errorMessage" HorizontalAlignment="Left" Foreground="#ad1f1f" Margin="446,150,0,0" TextWrapping="Wrap" Text="Beginning of activity date cannot be after today's date" VerticalAlignment="Top" Width="336" Visibility="Hidden"/>
     </Grid>
 </Page>

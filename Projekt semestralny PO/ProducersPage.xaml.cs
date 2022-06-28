@@ -43,22 +43,36 @@ namespace Projekt_semestralny_PO
             this.beginningOfActivity.SelectedDate = DateTime.Today;
         }
 
+        private bool validateDate(DateTime date)
+        {
+            DateTime currentDate = DateTime.Now;
+            return date <= currentDate;
+        }
+
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            producer newProducer = new producer() { producer_name = producerName.Text, beginning_of_activity = (DateTime)beginningOfActivity.SelectedDate };
+            DateTime beginningOfActivityDate = (DateTime)this.beginningOfActivity.SelectedDate;
 
-            db.producers.Add(newProducer);
-            db.SaveChanges();
+            if (validateDate(beginningOfActivityDate))
+            {
+                errorMessage.Visibility = Visibility.Hidden;
 
-            var producers = from producer in db.producers
-                            select new
-                            {
-                                ID = producer.producer_id,
-                                Name = producer.producer_name,
-                                BeginningOfActivity = producer.beginning_of_activity,
-                            };
+                producer newProducer = new producer() { producer_name = producerName.Text, beginning_of_activity = (DateTime)beginningOfActivity.SelectedDate };
 
-            this.gridProducers.ItemsSource = producers.ToList();
+                db.producers.Add(newProducer);
+                db.SaveChanges();
+
+                var producers = from producer in db.producers
+                                select new
+                                {
+                                    ID = producer.producer_id,
+                                    Name = producer.producer_name,
+                                    BeginningOfActivity = producer.beginning_of_activity,
+                                };
+
+                this.gridProducers.ItemsSource = producers.ToList();
+            }
+            else errorMessage.Visibility = Visibility.Visible;
         }
 
         private int producerIdToUpdate = 0;
@@ -75,28 +89,37 @@ namespace Projekt_semestralny_PO
             }
         }
 
+
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
-            producer producerToUpdate = (from producer in db.producers where producer.producer_id == this.producerIdToUpdate select producer).SingleOrDefault();
-
-            if (producerToUpdate != null)
+            DateTime beginningOfActivityDate = (DateTime)this.beginningOfActivity.SelectedDate;
+            
+            if (validateDate(beginningOfActivityDate))
             {
-                producerToUpdate.producer_name = this.producerName.Text;
-                producerToUpdate.beginning_of_activity = (DateTime)this.beginningOfActivity.SelectedDate;
+                errorMessage.Visibility = Visibility.Hidden;
 
-                clear_Form();
-                db.SaveChanges();
+                producer producerToUpdate = (from producer in db.producers where producer.producer_id == this.producerIdToUpdate select producer).SingleOrDefault();
+
+                if (producerToUpdate != null)
+                {
+                    producerToUpdate.producer_name = this.producerName.Text;
+                    producerToUpdate.beginning_of_activity = beginningOfActivityDate;
+
+                    clear_Form();
+                    db.SaveChanges();
+                }
+
+                var producers = from producer in db.producers
+                                select new
+                                {
+                                    ID = producer.producer_id,
+                                    Name = producer.producer_name,
+                                    BeginningOfActivity = producer.beginning_of_activity,
+                                };
+
+                this.gridProducers.ItemsSource = producers.ToList();
             }
-
-            var producers = from producer in db.producers
-                            select new
-                            {
-                                ID = producer.producer_id,
-                                Name = producer.producer_name,
-                                BeginningOfActivity = producer.beginning_of_activity,
-                            };
-
-            this.gridProducers.ItemsSource = producers.ToList();
+            else errorMessage.Visibility = Visibility.Visible;
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
